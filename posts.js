@@ -9,6 +9,7 @@ function makeElement(post){
 async function load(){
   const resp = await fetch("https://my-app.mihirshah-11204.workers.dev/posts");
   const postsResp = await resp.json();
+  console.log(postsResp);
   
   feed = document.getElementById('feed');
   for(const el of postsResp){
@@ -18,20 +19,23 @@ async function load(){
   }
 }
 
-async function runPost(user, title, content, ts){
-  let obj = JSON.stringify({'username':user,'title':title,'content':content,'timestamp':ts});
-  let header = {'Content-Type':'application/json'};
-  await fetch('https://my-app.mihirshah-11204.workers.dev/posts', {method:'POST', headers:header, body:obj});
+async function postHandler(){
+  let user = document.getElementById('username').innerText;
+  let title = document.getElementById('title').innerText;
+  let content = document.getElementById('content').innerText;
+
+  let body = JSON.stringify({'username':user, 'title':title, 'content':content});
+  let header = {'Content-Type': 'application/json'};
+  await fetch('https://my-app.mihirshah-11204.workers.dev/posts', {
+    method: 'POST',
+    headers: header,
+    body: body
+  });
 }
 
 window.onload = ()=>{
-  document.getElementById('submit').addEventListener("click", ()=>{
-    user = document.getElementById('username').innerText;
-    title = document.getElementById('title').innerText;
-    content = document.getElementById('content').innerText;
-    ts = String(new Date().getTime());
-
-    runPost(user, title, content, ts);
+  document.getElementById('submit').addEventListener('click', ()=>{
+    postHandler();
   });
   load();
 };
