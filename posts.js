@@ -20,12 +20,12 @@ async function load(){
 }
 
 async function postHandler(){
-  let user = document.getElementById('username').innerText;
-  let title = document.getElementById('title').innerText;
-  let content = document.getElementById('content').innerText;
+  let user = document.getElementById('username').value;
+  let title = document.getElementById('title').value;
+  let content = document.getElementById('content').value;
 
   let body = JSON.stringify({'username':user, 'title':title, 'content':content});
-  let header = {'Content-Type': 'application/json'};
+  let header = {'Content-Type': 'text/plain'};
   await fetch('https://my-app.mihirshah-11204.workers.dev/posts', {
     method: 'POST',
     headers: header,
