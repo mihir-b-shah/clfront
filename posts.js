@@ -20,7 +20,7 @@ function render(content){
     if(validURL(el)){
       // regular link
       return `<a href="${el}">${el}</a>`
-    } else if(el.substring(0,4) == 'vid/' && validURL(el.substring(4))){
+    } else if(el.substring(0,6) == 'embed/' && validURL(el.substring(6))){
       // embedded in iframe
       return `<br><iframe src="${el.substring(4)}"></iframe><br>`
     } else if(el.substring(0,4) == 'img/' && validURL(el.substring(4))){
