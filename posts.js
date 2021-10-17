@@ -22,7 +22,8 @@ function render(content){
       return `<a href="${el}">${el}</a>`
     } else if(el.substring(0,6) == 'embed/' && validURL(el.substring(6))){
       // embedded in iframe
-      return `<br><iframe src="${el.substring(4)}"></iframe><br>`
+      console.log('hello!\n');
+      return `<br><iframe src="${el.substring(6)}"></iframe><br>`
     } else if(el.substring(0,4) == 'img/' && validURL(el.substring(4))){
       // embedded in iframe
       return `<br><img style="max-height:150px" src="${el.substring(4)}"></img><br>`
